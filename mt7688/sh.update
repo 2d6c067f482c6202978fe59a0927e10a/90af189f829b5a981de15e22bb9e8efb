@@ -26,7 +26,7 @@ echo "Remove old firmware"
 rm -rf /tmp/firmware/tar.gz /tmp/database/update
 
 echo "Download firmware"
-wget $FW_URL /tmp/
+wget $FW_URL -O /tmp/firmware.tar.gz
 
 echo "Check sum firmware"
 VALIDATOR=`sha256sum /tmp/firmware.tar.gz | awk '{print $1}'`
