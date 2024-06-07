@@ -2,7 +2,7 @@ if [ "$SERVER" == "Production" ]; then
     FW_URL="https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/Production/firmware.tar.gz"
     VERSION=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/Production/version`
     CHECK_SUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/Production/checksum | awk '{print $1}'`
-elif [ "$SERBER" = "Staging" ]; then
+elif [ "$SERVER" = "Staging" ]; then
     FW_URL="https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/Staging/firmware.tar.gz"
     VERSION=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/Staging/version`
     CHECK_SUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/Staging/checksum | awk '{print $1}'`
