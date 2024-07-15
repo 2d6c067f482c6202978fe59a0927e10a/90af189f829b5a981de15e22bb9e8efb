@@ -23,7 +23,7 @@ PM_CURRENT_CHECKSUM=`sha256sum /processmanager/process-manager | awk '{print $1}
 if [ "$PM_OTA_CHECKSUM" != "$PM_CURRENT_CHECKSUM" ]; then
         wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/process-manager/process-manager -O /tmp/pm-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/pm-update | awk '{print $1}'`
-        if [ "$HC_MODULE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
+        if [ "$PM_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/pm-update /processmanager/process-manager
                 chmod +x /processmanager/process-manager
                 PM_RESTART_FLAG=1
