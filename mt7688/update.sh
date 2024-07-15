@@ -4,6 +4,7 @@
 /etc/init.d/relay-agent stop
 
 if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
+        echo "clean log"
         cat /dev/null > /tmp/log/io-service.log
         cat /dev/null > /tmp/log/network-service.log
         cat /dev/null > /tmp/log/zigbee.log
