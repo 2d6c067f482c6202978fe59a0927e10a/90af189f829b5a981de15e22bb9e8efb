@@ -12,5 +12,6 @@ if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
         cat /dev/null > /tmp/log/ip-bridge.log
         cat /dev/null > /tmp/log/ota.log
         cat /dev/null > /tmp/log/hcg1.log
+        cat /dev/null > /tmp/log/bluetooth.log
 fi
 
