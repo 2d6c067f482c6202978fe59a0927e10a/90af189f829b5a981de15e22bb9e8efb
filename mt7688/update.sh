@@ -1,3 +1,6 @@
+RAW_CONTENT_BASE=https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master
+FILE_BASE=https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw
+
 /etc/init.d/relay-agent disable
 /etc/init.d/hc-module disable
 /etc/init.d/hc-module stop
@@ -18,10 +21,10 @@ if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
         PM_RESTART_FLAG=1
 fi
 
-PM_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/process-manager/checksum`
+PM_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/process-manager/checksum`
 PM_CURRENT_CHECKSUM=`sha256sum /processmanager/process-manager | awk '{print $1}'`
 if [ "$PM_OTA_CHECKSUM" != "$PM_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/process-manager/process-manager -O /tmp/pm-update
+        wget $FILE_BASE/mt7688/process-manager/process-manager -O /tmp/pm-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/pm-update | awk '{print $1}'`
         if [ "$PM_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/pm-update /processmanager/process-manager
@@ -36,9 +39,6 @@ if [ $PM_RESTART_FLAG == 1 ]; then
         sleep 1
         /etc/init.d/processmanager start
 fi
-
-RAW_CONTENT_BASE=https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master
-FILE_BASE=https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw
 
 # update hc-module
 HC_MODULE_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/master/mt7688/hc-module/checksum`
