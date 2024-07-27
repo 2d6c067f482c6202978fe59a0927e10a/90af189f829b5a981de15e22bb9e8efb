@@ -1,5 +1,5 @@
-RAW_CONTENT_BASE=https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master
-FILE_BASE=https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw
+RAW_CONTENT_BASE=https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/staging
+FILE_BASE=https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/staging
 
 /etc/init.d/relay-agent disable
 /etc/init.d/hc-module disable
