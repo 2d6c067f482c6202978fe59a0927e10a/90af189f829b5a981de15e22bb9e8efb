@@ -37,11 +37,14 @@ if [ $PM_RESTART_FLAG == 1 ]; then
         /etc/init.d/processmanager start
 fi
 
+RAW_CONTENT_BASE=https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master
+FILE_BASE=https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw
+
 # update hc-module
-HC_MODULE_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/hc-module/checksum`
+HC_MODULE_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/master/mt7688/hc-module/checksum`
 HC_MODULE_CURRENT_CHECKSUM=`sha256sum /hc-module/hc-module | awk '{print $1}'`
 if [ "$HC_MODULE_OTA_CHECKSUM" != "$HC_MODULE_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/hc-module/hc-module -O /tmp/hc-module-update
+        wget $FILE_BASE/mt7688/hc-module/hc-module -O /tmp/hc-module-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/hc-module-update | awk '{print $1}'`
         if [ "$HC_MODULE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/hc-module-update /hc-module/hc-module
@@ -51,10 +54,10 @@ fi
 ##################
 
 # update relay-agent
-RELAY_AGENT_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/relay-agent/checksum`
+RELAY_AGENT_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/relay-agent/checksum`
 RELAY_AGENT_CURRENT_CHECKSUM=`sha256sum /relay-agent/relay-agent | awk '{print $1}'`
 if [ "$RELAY_AGENT_OTA_CHECKSUM" != "$RELAY_AGENT_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/relay-agent/relay-agent -O /tmp/relay-agent-update
+        wget $FILE_BASE/mt7688/relay-agent/relay-agent -O /tmp/relay-agent-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/relay-agent-update | awk '{print $1}'`
         if [ "$RELAY_AGENT_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/relay-agent-update /relay-agent/relay-agent
@@ -64,10 +67,10 @@ fi
 ##################
 
 # update ip
-IP_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/ip-bridge/checksum`
+IP_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/ip-bridge/checksum`
 IP_CURRENT_CHECKSUM=`sha256sum /ip-bridge/ip | awk '{print $1}'`
 if [ "$IP_OTA_CHECKSUM" != "$IP_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/ip-bridge/ip -O /tmp/ip-update
+        wget $FILE_BASE/mt7688/ip-bridge/ip -O /tmp/ip-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/ip-update | awk '{print $1}'`
         if [ "$IP_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/ip-update /ip-bridge/ip
@@ -77,10 +80,10 @@ fi
 ##################
 
 # update hcg1
-HCG1_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/hcg1/checksum`
+HCG1_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/hcg1/checksum`
 HCG1_CURRENT_CHECKSUM=`sha256sum /hcg1/hcg1 | awk '{print $1}'`
 if [ "$HCG1_OTA_CHECKSUM" != "$HCG1_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/hcg1/hcg1 -O /tmp/hcg1-update
+        wget $FILE_BASE/master/mt7688/hcg1/hcg1 -O /tmp/hcg1-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/relay-agent-update | awk '{print $1}'`
         if [ "$HCG1_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/hcg1-update /hcg1/hcg1
@@ -90,10 +93,10 @@ fi
 ##################
 
 # update io-service
-IO_SERVICE_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/io-service/checksum`
+IO_SERVICE_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/io-service/checksum`
 IO_SERVICE_CURRENT_CHECKSUM=`sha256sum /io-service/io-service | awk '{print $1}'`
 if [ "$IO_SERVICE_OTA_CHECKSUM" != "$IO_SERVICE_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/io-service/io-service -O /tmp/io-service-update
+        wget $FILE_BASE/mt7688/io-service/io-service -O /tmp/io-service-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/io-service-update | awk '{print $1}'`
         if [ "$IO_SERVICE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/io-service-update /io-service/io-service
@@ -103,10 +106,10 @@ fi
 ##################
 
 # update zigbee
-ZIGBEE_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/zigbee/checksum`
+ZIGBEE_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/zigbee/checksum`
 ZIGBEE_SERVICE_CURRENT_CHECKSUM=`sha256sum /zigbee/zigbee | awk '{print $1}'`
 if [ "$ZIGBEE_OTA_CHECKSUM" != "$ZIGBEE_SERVICE_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/zigbee/zigbee -O /tmp/zigbee-update
+        wget $FILE_BASE/mt7688/zigbee/zigbee -O /tmp/zigbee-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/zigbee-update | awk '{print $1}'`
         if [ "$ZIGBEE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/zigbee-update /zigbee/zigbee
@@ -116,10 +119,10 @@ fi
 ##################
 
 # update bluetooth
-BLUETOOTH_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/bluetooth/checksum`
+BLUETOOTH_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/bluetooth/checksum`
 BLUETOOTH_CURRENT_CHECKSUM=`sha256sum /bluetooth/bluetooth | awk '{print $1}'`
 if [ "$BLUETOOTH_OTA_CHECKSUM" != "$BLUETOOTH_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/bluetooth/bluetooth -O /tmp/bluetooth-update
+        wget $FILE_BASE/mt7688/bluetooth/bluetooth -O /tmp/bluetooth-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/bluetooth-update | awk '{print $1}'`
         if [ "$BLUETOOTH_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/bluetooth-update /bluetooth/bluetooth
@@ -129,10 +132,10 @@ fi
 ##################
 
 # update ota-app
-OTA_APP_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/ota-app/checksum`
+OTA_APP_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/ota-app/checksum`
 OTA_APP_CURRENT_CHECKSUM=`sha256sum /ota-app/ota-app | awk '{print $1}'`
 if [ "$OTA_APP_OTA_CHECKSUM" != "$OTA_APP_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/ota-app/ota-app -O /tmp/ota-app-update
+        wget $FILE_BASE/mt7688/ota-app/ota-app -O /tmp/ota-app-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/ota-app-update | awk '{print $1}'`
         if [ "$OTA_APP_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/ota-app-update /ota-app/ota-app
@@ -142,10 +145,10 @@ fi
 ##################
 
 # update network-service
-NETWORK_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/network-service/checksum`
+NETWORK_OTA_CHECKSUM=`curl -s $RAW_CONTENT_BASE/mt7688/network-service/checksum`
 NETWORK_CURRENT_CHECKSUM=`sha256sum /network-service/network-service | awk '{print $1}'`
 if [ "$NETWORK_OTA_CHECKSUM" != "$NETWORK_CURRENT_CHECKSUM" ]; then
-        wget https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/master/mt7688/network/network-service -O /tmp/network-service-update
+        wget $FILE_BASE/network/network-service -O /tmp/network-service-update
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/network-service-update | awk '{print $1}'`
         if [ "$NETWORK_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/network-service-update /network-service/network-service
