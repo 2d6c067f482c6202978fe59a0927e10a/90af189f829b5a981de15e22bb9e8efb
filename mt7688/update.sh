@@ -46,7 +46,7 @@ if [ "$OTA_OTA_CHECKSUM" != "" ] && [ "$OTA_OTA_CHECKSUM" != "$OTA_CURRENT_CHECK
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/ota-update | awk '{print $1}'`
         if [ "$OTA_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 RANDOM=`head -c 200 /dev/urandom | tr -dc '0-9'  | head -n 1`
-                SLEEP_TIME=`expr $random % 3600`
+                SLEEP_TIME=`expr $RANDOM % 3600`
                 mv /tmp/ota-update /ota-app/ota-app
                 chmod +x /ota-app/ota-app
                 sleep $SLEEP_TIME && /etc/init.d/ota-app restart &
