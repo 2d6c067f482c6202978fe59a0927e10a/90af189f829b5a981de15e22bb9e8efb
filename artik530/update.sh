@@ -7,5 +7,6 @@ if [ "$NET_WATCHING_CHECKSUM" != "" ] && [ "$NET_WATCHING_CHECKSUM" != "$NET_WAT
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/network-watching-tmp | awk '{print $1}'`
         if [ "$NET_WATCHING_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
                 mv /tmp/network-watching-tmp /app/script/network-watching.sh
+                systemctl restart network-watching
         fi
 fi
