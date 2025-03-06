@@ -1,10 +1,5 @@
 #!/bin/sh
 
-/etc/init.d/relay-agent disable
-/etc/init.d/hc-module disable
-/etc/init.d/hc-module stop
-/etc/init.d/relay-agent stop
-
 # PM_RESTART_FLAG=0
 
 if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
