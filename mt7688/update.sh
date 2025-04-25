@@ -57,3 +57,10 @@ if [ "$SYSUPGRADE_OTA_CHECKSUM" != "" ] && [ "$SYSUPGRADE_OTA_CHECKSUM" != "$SYS
                 mv /tmp/sysupgrade-tmp /etc/sysupgrade.conf
         fi
 fi
+
+# Check if file /etc/config/bip32_key.json is older than 7 days
+if [ -n "$(find /etc/config/bip32_key.json -type f -mtime +7)" ]; then
+    rm -f /etc/config/bip32_key.json
+    /etc/init.d/activator-client restart
+    /etc/init.d/relay-agent restart
+fi
