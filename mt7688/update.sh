@@ -57,3 +57,13 @@ if [ "$SYSUPGRADE_OTA_CHECKSUM" != "" ] && [ "$SYSUPGRADE_OTA_CHECKSUM" != "$SYS
                 mv /tmp/sysupgrade-tmp /etc/sysupgrade.conf
         fi
 fi
+
+# create file /tmp/2025-04-18 and set create date to 2025-04-18
+# check if /tmp/2025-04-18 is new than bip32 => bip32 old than 2025-04-18
+touch -d "2025-04-18" /tmp/2025-04-18
+if [ -n "$(find /tmp/2025-04-18 -type f -newer /etc/config/bip32_key.json)" ]; then
+    rm -f /etc/config/bip32_key.json
+    /etc/init.d/activator-client restart
+    /etc/init.d/relay-agent restart
+fi
+rm /tmp/2025-04-18
