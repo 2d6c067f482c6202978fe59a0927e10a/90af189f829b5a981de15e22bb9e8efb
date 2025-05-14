@@ -2,18 +2,18 @@
 
 # PM_RESTART_FLAG=0
 
-if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
-        echo "clean log"
-        cat /dev/null > /tmp/log/io-service.log
-        cat /dev/null > /tmp/log/network-service.log
-        cat /dev/null > /tmp/log/zigbee.log
-        cat /dev/null > /tmp/log/PM.log
-        cat /dev/null > /tmp/log/ip-bridge.log
-        cat /dev/null > /tmp/log/ota.log
-        cat /dev/null > /tmp/log/hcg1.log
-        cat /dev/null > /tmp/log/bluetooth.log
-        # PM_RESTART_FLAG=1
-fi
+# if [ `du /tmp/log/ | awk '{print $1}'` -ge 10000 ]; then
+#         echo "clean log"
+#         cat /dev/null > /tmp/log/io-service.log
+#         cat /dev/null > /tmp/log/network-service.log
+#         cat /dev/null > /tmp/log/zigbee.log
+#         cat /dev/null > /tmp/log/PM.log
+#         cat /dev/null > /tmp/log/ip-bridge.log
+#         cat /dev/null > /tmp/log/ota.log
+#         cat /dev/null > /tmp/log/hcg1.log
+#         cat /dev/null > /tmp/log/bluetooth.log
+#         # PM_RESTART_FLAG=1
+# fi
 
 # PM_OTA_CHECKSUM=`curl -s https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/master/mt7688/process-manager/checksum`
 # PM_CURRENT_CHECKSUM=`sha256sum /processmanager/process-manager | awk '{print $1}'`
@@ -48,22 +48,22 @@ fi
 #         fi 
 # fi
 
-SYSUPGRADE_OTA_CHECKSUM=`curl -s --connect-timeout 10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/update-script-for-sysupdate/mt7688/sysupgrade/checksum`
-SYSUPGRADE_CURRENT_CHECKSUM=`sha256sum /etc/sysupgrade.conf | awk '{print $1}'`
-if [ "$SYSUPGRADE_OTA_CHECKSUM" != "" ] && [ "$SYSUPGRADE_OTA_CHECKSUM" != "$SYSUPGRADE_CURRENT_CHECKSUM" ]; then
-        wget --timeout=10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/master/mt7688/sysupgrade/sysupgrade.conf -O /tmp/sysupgrade-tmp
-        DOWNLOAD_CHECKSUM=`sha256sum /tmp/sysupgrade-tmp | awk '{print $1}'`
-        if [ "$SYSUPGRADE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
-                mv /tmp/sysupgrade-tmp /etc/sysupgrade.conf
-        fi
-fi
+# SYSUPGRADE_OTA_CHECKSUM=`curl -s --connect-timeout 10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/update-script-for-sysupdate/mt7688/sysupgrade/checksum`
+# SYSUPGRADE_CURRENT_CHECKSUM=`sha256sum /etc/sysupgrade.conf | awk '{print $1}'`
+# if [ "$SYSUPGRADE_OTA_CHECKSUM" != "" ] && [ "$SYSUPGRADE_OTA_CHECKSUM" != "$SYSUPGRADE_CURRENT_CHECKSUM" ]; then
+#         wget --timeout=10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/master/mt7688/sysupgrade/sysupgrade.conf -O /tmp/sysupgrade-tmp
+#         DOWNLOAD_CHECKSUM=`sha256sum /tmp/sysupgrade-tmp | awk '{print $1}'`
+#         if [ "$SYSUPGRADE_OTA_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
+#                 mv /tmp/sysupgrade-tmp /etc/sysupgrade.conf
+#         fi
+# fi
 
-# create file /tmp/2025-04-18 and set create date to 2025-04-18
-# check if /tmp/2025-04-18 is new than bip32 => bip32 old than 2025-04-18
-touch -d "2025-04-18" /tmp/2025-04-18
-if [ -n "$(find /tmp/2025-04-18 -type f -newer /etc/config/bip32_key.json)" ]; then
-    rm -f /etc/config/bip32_key.json
-    /etc/init.d/activator-client restart
-    /etc/init.d/relay-agent restart
-fi
-rm /tmp/2025-04-18
+# # create file /tmp/2025-04-18 and set create date to 2025-04-18
+# # check if /tmp/2025-04-18 is new than bip32 => bip32 old than 2025-04-18
+# touch -d "2025-04-18" /tmp/2025-04-18
+# if [ -n "$(find /tmp/2025-04-18 -type f -newer /etc/config/bip32_key.json)" ]; then
+#     rm -f /etc/config/bip32_key.json
+#     /etc/init.d/activator-client restart
+#     /etc/init.d/relay-agent restart
+# fi
+# rm /tmp/2025-04-18
