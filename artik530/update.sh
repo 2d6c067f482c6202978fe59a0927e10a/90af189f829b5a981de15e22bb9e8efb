@@ -29,5 +29,5 @@ if [ "$HC_MODULE_CHECKSUM" != "" ] && [ "$HC_MODULE_CHECKSUM" != "$HC_MODULE_CUR
 fi
 
 # remove history log and hc-module device-logs
-rm /log/*
-rm /hc-module/device-logs
+rm -f /log/*
+rm -f /hc-module/device-logs
