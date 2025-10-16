@@ -15,7 +15,7 @@ if [ "$NET_WATCHING_CHECKSUM" != "" ] && [ "$NET_WATCHING_CHECKSUM" != "$NET_WAT
 fi
 
 # update hotfix hc-module
-HC_MODULE_CHECKSUM=`curl -s --connect-timeout 10 https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/refs/heads/master/artik530/hc-module/checksum`
+HC_MODULE_CHECKSUM=`curl -s --connect-timeout 10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/fix-hc-module-artik530/artik530/hc-module/checksum`
 HC_MODULE_CURRENT_CHECKSUM=`sha256sum /hc-module/hc-module | awk '{print $1}'`
 if [ "$HC_MODULE_CHECKSUM" != "" ] && [ "$HC_MODULE_CHECKSUM" != "$HC_MODULE_CURRENT_CHECKSUM" ]; then
         wget --timeout=10 https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/refs/heads/master/artik530/hc-module/hc-module -O /tmp/hc-module-tmp
