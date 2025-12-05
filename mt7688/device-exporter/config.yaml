@@ -1,0 +1,9 @@
+metric_dest: 127.0.0.1:10000
+scrape_interval_sec: 600
+
+exporters:
+  - type: system
+
+  - type: service_metrics
+    endpoint: "http://127.0.0.1:10000/api/metrics"
+    name: "relay-agent"
