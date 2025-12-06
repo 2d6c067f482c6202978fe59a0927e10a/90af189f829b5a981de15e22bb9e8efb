@@ -1,8 +1,31 @@
 metric_dest: 127.0.0.1:10000
-scrape_interval_sec: 600
+scrape_interval_sec: 900
 
 exporters:
   - type: system
+
+  - type: process
+    processes:
+      - name: "relay-agent"
+        cmd: "relay-agent"
+      - name: "hcg1"
+        cmd: "hcg1"
+      - name: "hc-module"
+        cmd: "hc-module"
+      - name: "process-manager"
+        cmd: "process-manager"
+      - name: "io-service"
+        cmd: "io-service"
+      - name: "network-service"
+        cmd: "network-service"
+      - name: "ota-app"
+        cmd: "ota-app"
+      - name: "bluetooth"
+        cmd: "bluetooth"
+      - name: "ip"
+        cmd: "ip"
+      - name: "zigbee"
+        cmd: "zigbee"
 
   - type: service_metrics
     endpoint: "http://127.0.0.1:10000/api/metrics"
