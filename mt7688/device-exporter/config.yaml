@@ -1,5 +1,5 @@
 metric_dest: 127.0.0.1:10000
-scrape_interval_sec: 300
+scrape_interval_sec: 900
 
 exporters:
   - type: system
