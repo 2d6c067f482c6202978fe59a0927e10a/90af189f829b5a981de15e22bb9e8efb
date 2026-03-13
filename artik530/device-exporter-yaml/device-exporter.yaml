@@ -1,0 +1,34 @@
+metric_dest: 127.0.0.1:10000
+scrape_interval_sec: 900
+
+exporters:
+  - type: system
+
+  - type: process
+    processes:
+      - name: "process-manager"
+        cmd: "/tmp/process-manager"
+      - name: "io-service"
+        cmd: "/tmp/io-service"
+      - name: "network-service"
+        cmd: "/tmp/network-service"
+      - name: "hcg1"
+        cmd: "/tmp/hcg1"
+      - name: "ota-app"
+        cmd: "/tmp/ota-app"
+      - name: "hc-module"
+        cmd: "/tmp/hc-module"
+      - name: "relay-agent"
+        cmd: "/tmp/relay-agent"
+      - name: "bluetooth"
+        cmd: "/tmp/bluetooth"
+      - name: "zigbee"
+        cmd: "/tmp/zigbee"
+      - name: "ip"
+        cmd: "/tmp/ip"
+      - name: "lte-bridge"
+        cmd: "/tmp/lte-bridge"
+
+  - type: service_metrics
+    endpoint: "http://127.0.0.1:10000/api/metrics"
+    name: "relay-agent"
