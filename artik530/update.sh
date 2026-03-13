@@ -19,7 +19,7 @@ rm -f /log/*
 rm -f /hc-module/device-logs
 
 NEED_RESTART_DEVICE_EXPORTER=false
-NEED_RESEART_RELAY_AGENT=false
+NEED_RESTART_RELAY_AGENT=false
 
 
 # device-exporter.yaml
@@ -102,6 +102,6 @@ if [ "$NEED_RESTART_DEVICE_EXPORTER" == "true" ]; then
         systemctl restart device-exporter.service
 fi
 
-if [ "$NEED_RESEART_RELAY_AGENT" == "true" ]; then
+if [ "$NEED_RESTART_RELAY_AGENT" == "true" ]; then
         systemctl restart relay-agent.service
 fi
