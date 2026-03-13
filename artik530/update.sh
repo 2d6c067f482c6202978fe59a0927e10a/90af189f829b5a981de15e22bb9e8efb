@@ -53,7 +53,7 @@ if [ "$DEVICE_EXPORTER_WLAN0_CHECKSUM" != "" ] && [ "$DEVICE_EXPORTER_WLAN0_CHEC
         wget --timeout=10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/master/artik530/device-exporter-conf/device-exporter.wlan0.conf -O /tmp/device-exporter-wlan0-tmp
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/device-exporter-wlan0-tmp | awk '{print $1}'`
         if [ "$DEVICE_EXPORTER_ETH0_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
-                mv /tmp/device-exporter-eth0-tmp /device-exporter/device-exporter.eth0.conf
+                mv /tmp/device-exporter-wlan0-tmp /device-exporter/device-exporter.wlan0.conf
                 NEED_RESTART_DEVICE_EXPORTER=true
         fi
 fi
