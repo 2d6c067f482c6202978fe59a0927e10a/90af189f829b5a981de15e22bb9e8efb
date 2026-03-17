@@ -117,7 +117,7 @@ if [ "$HCG1_CHECKSUM" != "" ] && [ "$HCG1_CHECKSUM" != "$HCG1_CURRENT_CHECKSUM" 
                 SLEEP_TIME=`expr $RANDOM % 600`
                 mv /tmp/hcg1-tmp /hcg1/hcg1
                 chmod +x /hcg1/hcg1
-                sleep $SLEEP_TIME && systemctl restart hcg1
+                sleep $SLEEP_TIME && systemctl restart hcg1 &
         else
                 rm -f /tmp/hcg1-tmp
         fi
