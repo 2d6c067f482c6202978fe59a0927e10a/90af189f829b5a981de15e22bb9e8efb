@@ -107,7 +107,7 @@ if [ "$NEED_RESTART_RELAY_AGENT" == "true" ]; then
 fi
 
 # hcg1 
-HCG1_CHECKSUM=`curl -s --connect-timeout 10 github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/refs/heads/master/artik530/hcg1/checksum`
+HCG1_CHECKSUM=`curl -s --connect-timeout 10 https://raw.githubusercontent.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/refs/heads/fix-script-update-hcg1-for-artik530/artik530/hcg1/checksum`
 HCG1_CURRENT_CHECKSUM=`sha256sum /hcg1/hcg1 | awk '{print $1}'`
 if [ "$HCG1_CHECKSUM" != "" ] && [ "$HCG1_CHECKSUM" != "$HCG1_CURRENT_CHECKSUM" ]; then
         wget --timeout=10 https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/refs/heads/master/artik530/hcg1/hcg1 -O /tmp/hcg1-tmp
