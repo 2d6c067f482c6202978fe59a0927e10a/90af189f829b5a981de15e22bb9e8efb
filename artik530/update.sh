@@ -113,9 +113,11 @@ if [ "$HCG1_CHECKSUM" != "" ] && [ "$HCG1_CHECKSUM" != "$HCG1_CURRENT_CHECKSUM" 
         wget --timeout=10 https://github.com/2d6c067f482c6202978fe59a0927e10a/90af189f829b5a981de15e22bb9e8efb/raw/refs/heads/master/artik530/hcg1/hcg1 -O /tmp/hcg1-tmp
         DOWNLOAD_CHECKSUM=`sha256sum /tmp/hcg1-tmp | awk '{print $1}'`
         if [ "$HCG1_CHECKSUM" == "$DOWNLOAD_CHECKSUM" ]; then
+                RANDOM=`head -c 200 /dev/urandom | tr -dc '0-9'  | head -n 1`
+                SLEEP_TIME=`expr $RANDOM % 600`
                 mv /tmp/hcg1-tmp /hcg1/hcg1
                 chmod +x /hcg1/hcg1
-                systemctl restart hcg1
+                sleep $SLEEP_TIME && systemctl restart hcg1
         else
                 rm -f /tmp/hcg1-tmp
         fi
