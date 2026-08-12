@@ -1,0 +1,11 @@
+[Unit]
+Description=Lumi activator-client service
+
+[Service]
+ExecStartPre=/etc/smarthome/check-update.sh activator-client
+ExecStart=/bin/sh -c 'exec /usr/bin/activator-client >> /smarthome/log/activator-client.log 2>&1'
+EnvironmentFile=/var/cache/smarthome/activator-client/activator-client.conf
+StandardOutput=null
+CPUAffinity=5-6
+[Install]
+WantedBy=multi-user.target
