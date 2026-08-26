@@ -2,8 +2,10 @@
 
 echo "RK3588 github update"
 
-if [ -f /var/log/syslog ]; then
-    cat /dev/null > /var/log/syslog
+LOG_CLEANUP_CRON='*/10 * * * * find /var/log -xdev -type f -size +10M -exec truncate -s 0 {} +'
+
+if ! crontab -l 2>/dev/null | grep -Fqx "$LOG_CLEANUP_CRON"; then
+    (crontab -l 2>/dev/null; printf '%s\n' "$LOG_CLEANUP_CRON") | crontab -
 fi
 
 systemctl stop gdm3
