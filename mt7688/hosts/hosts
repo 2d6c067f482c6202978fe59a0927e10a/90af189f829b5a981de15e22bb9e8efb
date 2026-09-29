@@ -1,0 +1,9 @@
+127.0.0.1 localhost
+127.0.0.1 simulator.lumi.biz
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+210.211.96.187  broker.region-southeast-1.iot.lumi.vn
+210.211.96.187  api.smarthome.lumi.vn
+210.211.96.187  media.smarthome.lumi.vn
+113.177.27.162  vpn.lumi.vn
